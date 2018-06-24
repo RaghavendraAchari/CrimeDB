@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CrimeDB</string>
+    <string name="title_hint">Enter a title for the crime.</string>
+    <string name="title_label">Title</string>
+    <string name="details_label">Details</string>
+    <string name="solved_label">Solved</string>
+    <string name="crime_solved_image">ImageOfCrimeSolved</string>
+</resources>
