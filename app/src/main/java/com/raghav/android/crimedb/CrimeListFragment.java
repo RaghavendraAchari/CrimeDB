@@ -20,6 +20,9 @@ import java.util.UUID;
  * Created by Vighnesh on 22-04-2018.
  */
 
+//CONTROLLER
+
+
 public class CrimeListFragment extends Fragment{
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mCrimeAdapter;
@@ -30,6 +33,7 @@ public class CrimeListFragment extends Fragment{
         private TextView mDateTextView;
         private ImageView mImageView;
         private Crime mCrime;
+        private int pos=0;
 
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent){
@@ -50,12 +54,13 @@ public class CrimeListFragment extends Fragment{
         @Override
         public void onClick(View view) {
 //            Toast.makeText(getActivity(),mCrime.getTitle()+" clicked!",Toast.LENGTH_SHORT).show();
+
             UUID id=mCrime.getId();
             Intent intent = CrimeActivity.newIntent(getActivity(),id);
             int uid = mCrimeRecyclerView.getChildLayoutPosition(view);
             intent.putExtra("position",uid);
-            startActivityForResult(intent,REQ_CODE);
-        }
+            startActivity(intent);
+            }
 
     }
 
@@ -117,7 +122,8 @@ public class CrimeListFragment extends Fragment{
             mCrimeRecyclerView.setAdapter(mCrimeAdapter);
         }
         else
-            mCrimeAdapter.notifyDataSetChanged();
+            mCrimeAdapter.notifyItemChanged(4);
+
     }
 
 }

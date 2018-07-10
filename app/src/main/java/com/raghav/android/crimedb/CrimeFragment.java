@@ -21,6 +21,8 @@ import java.util.zip.Inflater;
  * Created by Vighnesh on 17-04-2018.
  */
 
+//CONTROLLER
+
 public class CrimeFragment extends android.support.v4.app.Fragment {
     private Crime mCrime;
     private EditText mTextField;

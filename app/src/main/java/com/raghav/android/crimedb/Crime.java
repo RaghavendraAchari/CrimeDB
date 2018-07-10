@@ -7,6 +7,8 @@ import java.util.UUID;
  * Created by Vighnesh on 17-04-2018.
  */
 
+//MODEL
+
 public class Crime {
     private Date mDate;
     private String mTitle;

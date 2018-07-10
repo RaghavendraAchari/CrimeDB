@@ -10,6 +10,11 @@ import java.util.UUID;
  * Created by Vighnesh on 22-04-2018.
  */
 
+
+///MODEL
+
+    //contains array list
+
 //a singleton class which holds only one object of crime
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
