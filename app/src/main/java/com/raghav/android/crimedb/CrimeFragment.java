@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
+import java.util.Date;
 import java.util.UUID;
 import java.util.zip.Inflater;
 
@@ -73,7 +74,7 @@ public class CrimeFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View view) {
                 FragmentManager fm = getFragmentManager();//get the fragment
-                DatePickerFragment mDateFragment = new DatePickerFragment();//create dialog
+                DatePickerFragment mDateFragment = DatePickerFragment.newInstance(mCrime.getDate());//create dialog
                 mDateFragment.show(fm,DIALOG_DATE);//send fragment and tag to show mwthod of
                 //DialogFragment class
             }
