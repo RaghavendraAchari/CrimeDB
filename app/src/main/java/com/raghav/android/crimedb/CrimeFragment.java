@@ -3,6 +3,7 @@ package com.raghav.android.crimedb;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class CrimeFragment extends android.support.v4.app.Fragment {
     private Button mDateButton;
     private CheckBox mCheckBox;
     public   static  final String ARG_CRIME_ID="ARG_CRIME_ID";
+    public   static  final String DIALOG_DATE = "dialogdate";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +69,15 @@ public class CrimeFragment extends android.support.v4.app.Fragment {
         });
         mTextField.setText(mCrime.getTitle());
         mDateButton.setText(mCrime.getDate().toString());
-        mDateButton.setEnabled(false);
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();//get the fragment
+                DatePickerFragment mDateFragment = new DatePickerFragment();//create dialog
+                mDateFragment.show(fm,DIALOG_DATE);//send fragment and tag to show mwthod of
+                //DialogFragment class
+            }
+        });
         mCheckBox.setChecked(mCrime.isSolved());
         mCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override

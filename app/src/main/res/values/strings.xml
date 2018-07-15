@@ -5,4 +5,5 @@
     <string name="details_label">Details</string>
     <string name="solved_label">Solved</string>
     <string name="crime_solved_image">ImageOfCrimeSolved</string>
+    <string name="date_picker_title">Date of Crime : </string>
 </resources>
