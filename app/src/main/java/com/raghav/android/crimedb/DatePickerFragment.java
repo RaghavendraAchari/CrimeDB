@@ -1,6 +1,9 @@
 package com.raghav.android.crimedb;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -11,6 +14,7 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Vighnesh on 14-07-2018.
@@ -19,6 +23,7 @@ import java.util.Date;
 public class DatePickerFragment extends DialogFragment {
     public static final String ARG_DATE = "date";
     private DatePicker mDatePicker;
+    public static final String EXTRA_DATE = "passed_date";
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -38,7 +43,16 @@ public class DatePickerFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
                 .setTitle(R.string.date_picker_title)
-                .setPositiveButton(android.R.string.ok,null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int year = mDatePicker.getYear();
+                        int month = mDatePicker.getMonth();
+                        int day = mDatePicker.getDayOfMonth();
+                        Date date= new GregorianCalendar(year,month,day).getTime();// get time returns the date
+                        sendResult(Activity.RESULT_OK,date);
+                    }
+                })
                 .create();
     }
     public static DatePickerFragment newInstance(Date date){
@@ -47,5 +61,13 @@ public class DatePickerFragment extends DialogFragment {
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+    private void sendResult(int resultCode, Date date){
+        if(getTargetFragment()==null)
+            return;
+        //create new intent and add extra date
+        Intent intent = new Intent();
+        intent.putExtra(DatePickerFragment.EXTRA_DATE,date);
+        getTargetFragment().onActivityResult(getTargetRequestCode(),resultCode,intent);
     }
 }

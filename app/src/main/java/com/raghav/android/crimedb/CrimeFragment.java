@@ -1,6 +1,8 @@
 package com.raghav.android.crimedb;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -32,6 +34,7 @@ public class CrimeFragment extends android.support.v4.app.Fragment {
     private CheckBox mCheckBox;
     public   static  final String ARG_CRIME_ID="ARG_CRIME_ID";
     public   static  final String DIALOG_DATE = "dialogdate";
+    private static final int REQ_CODE=0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,12 +72,13 @@ public class CrimeFragment extends android.support.v4.app.Fragment {
             }
         });
         mTextField.setText(mCrime.getTitle());
-        mDateButton.setText(mCrime.getDate().toString());
+        updateDate();
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fm = getFragmentManager();//get the fragment
                 DatePickerFragment mDateFragment = DatePickerFragment.newInstance(mCrime.getDate());//create dialog
+                mDateFragment.setTargetFragment(CrimeFragment.this,REQ_CODE);//set crimefrgmt as target fragmt to get back the result
                 mDateFragment.show(fm,DIALOG_DATE);//send fragment and tag to show mwthod of
                 //DialogFragment class
             }
@@ -96,4 +100,19 @@ public class CrimeFragment extends android.support.v4.app.Fragment {
         return fragment;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode!= Activity.RESULT_OK)
+            return;
+        if(requestCode==REQ_CODE){
+            Date date = (Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mCrime.setDate(date);
+            updateDate();
+        }
+
+    }
+
+    private void updateDate() {
+        mDateButton.setText(mCrime.getDate().toString());
+    }
 }
