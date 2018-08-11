@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,5 +31,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/crime_solved"
         android:text="@string/solved_label"/>
+
+    <Button
+        android:id="@+id/crime_suspect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_suspect_text"
+         />
+
+    <Button
+        android:id="@+id/crime_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/crime_report_text"
+         />
 
 </LinearLayout>
