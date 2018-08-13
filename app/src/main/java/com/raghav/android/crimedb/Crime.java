@@ -1,5 +1,6 @@
 package com.raghav.android.crimedb;
 
+import java.io.File;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,6 +21,9 @@ public class Crime {
 
     public void setSuspect(String suspect) {
         mSuspect = suspect;
+    }
+    public String getPhotoFileName(){
+        return "IMG_"+ getId().toString()+".jpg";
     }
 
     private String mSuspect ;
